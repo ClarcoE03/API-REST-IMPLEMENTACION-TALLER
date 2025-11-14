@@ -1,0 +1,130 @@
+openapi: 3.1.3
+info:
+  title: API de Envíos
+  version: '1.0.0'
+  description: API REST para registrar y consultar envíos (FastAPI + PostgreSQL)
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /envios:
+    get:
+      summary: Listar envíos
+      responses:
+        '200':
+          description: Lista de envíos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Envio'
+    post:
+      summary: Crear envío
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvioCreate'
+      responses:
+        '200':
+          description: Envío creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envio'
+  /envios/{id}:
+    get:
+      summary: Obtener envío por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Envío
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envio'
+        '404':
+          description: No encontrado
+    put:
+      summary: Actualizar envío por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvioUpdate'
+      responses:
+        '200':
+          description: Envío actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envio'
+        '404':
+          description: No encontrado
+    delete:
+      summary: Eliminar envío por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Eliminado
+components:
+  schemas:
+    Envio:
+      type: object
+      properties:
+        id:
+          type: string
+        destinatario:
+          type: string
+        direccion:
+          type: string
+        estado:
+          type: string
+      required:
+        - id
+        - destinatario
+        - direccion
+        - estado
+    EnvioCreate:
+      type: object
+      properties:
+        id:
+          type: string
+        destinatario:
+          type: string
+        direccion:
+          type: string
+        estado:
+          type: string
+      required:
+        - id
+        - destinatario
+        - direccion
+        - estado
+    EnvioUpdate:
+      type: object
+      properties:
+        destinatario:
+          type: string
+        direccion:
+          type: string
+        estado:
+          type: string
