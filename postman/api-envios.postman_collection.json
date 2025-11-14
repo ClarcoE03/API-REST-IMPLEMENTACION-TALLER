@@ -1,0 +1,61 @@
+{
+  "info": {
+    "name": "API Envíos - Taller 02",
+    "_postman_id": "11111111-2222-3333-4444-555555555555",
+    "description": "Colección para probar la API de envíos (GET/POST).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar envíos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/envios",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "envios"]
+        }
+      }
+    },
+    {
+      "name": "Obtener envío por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/envios/001",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "envios", "001"]
+        }
+      }
+    },
+    {
+      "name": "Crear envío",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"002\",\n  \"destinatario\": \"María López\",\n  \"direccion\": \"Av. Central 123\",\n  \"estado\": \"Registrado\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/envios",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "envios"]
+        }
+      }
+    }
+  ]
+}
